@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+    div{
+    	margin:10px;
+    }
+    label{
+    	width: 250px;
+        display: inline-block;
+    }
+    span{
+    	color:red;
+    }
+    /*
+    1. 빨간색 표시 필수 입력(빈칸허용 안함)
+    2. 회사명 5글자 이상
+    3. 이메일이 정확한지 유효성 검사
+    4. 
+    */
+    </style>
+    <script>//회사명 5글자 이상
+            function submitcheck(){
+                var form = document.form;
+                var company = document.getElementById("company");
+                var first = document.getElementById("fname");
+                var last = document.getElementById("lname");
+                var email = document.getElementById("email");
+                var title = document.getElementById("title");
+                var tel = document.getElementById("phone");
+                var date = document.getElementById("date");
+                var job = document.getElementById("job");
+
+                if(company.value.length <= 5){
+                    alert("회사명을 5자 이상 입력하세요!");
+        		    company.focus();	
+        		    return false;
+                }
+
+                if(!first.value){
+                    alert("First Name!");
+        		    first.focus();	
+        		    return false;
+                }
+
+                if(!last.value){
+                    alert("Last Name!");
+        		    last.focus();	
+        		    return false;
+                }
+
+                var x = document.forms["myform"]["email"].value;                                         
+                var reg_email = /^([0-9a-zA-Z_\.-]+)@([0-9a-zA-Z_-]+)(\.[0-9a-zA-Z_-]+){1,2}$/;
+                if(!reg_email.test(x)) {  
+                    alert("이메일 형식이 일치하지 않습니다");                          
+                return false;
+                }
+
+                if(!title.value){
+                    alert("Title!");
+        		    title.focus();	
+        		    return false;
+                }
+
+                var reg_tel = /^\d{3}-\d{3,4}-\d{4}$/; // 전화번호 정규식(핸드폰)
+                if(!reg_tel.test(tel.value)){
+                    alert("전화번호를 정확히 입력하세요!");
+                    tel.focus;
+                    return false;
+                }
+
+                if(!date.value){
+                    alert("Date!");
+        		    date.focus();	
+        		    return false;
+                }
+
+                if (!form.job.value) {             
+        		    alert("Job 을 선택하세요!");
+        		    return false;
+        	    }
+
+                return true;
+            }
+        }
+    </script>
+</head>
+<body>
+    <form name="myform" action="form_ok.php" onsubmit="return check()" method="POST">
+    <fieldset>
+    <div>
+        <label><span>*</span> Company:</label>
+        <input type="text" name="company" required>
+    </div>
+
+
+    <div>
+        <label><span>*</span> First Name:</label>
+        <input type="text" name="fname" required>
+    </div>
+    <div>
+        <label><span>*</span> Last Name:</label>
+        <input type="text" name="lname" required>
+    </div>
+    <div>
+        <label><span>*</span> Email Address:</label>
+        <input type="text" name="email" required>
+    </div>
+
+    <script>//이메일이 정확한지 유효성 검사
+
+    </script>
+
+    <div>
+        <label><span>*</span> Title:</label>
+        <input type="text" name="title" required>
+    </div>
+    <div>
+        <label><span>*</span> Phone:</label>
+        <input type="text" name="phone" placeholder="010-0000-0000" title="형식은 010-0000-0000입니다." pattern="[0-9]{3}-[0-9]{4}-[0-9]{4}" required>
+    </div>
+
+    <script>//핸드폰번호 검사
+
+    </script>
+
+    <div>
+        <label style="margin-left:5px">Cancel Registration</label>
+        <input type="checkbox" name="cr">
+    </div>
+    <div>
+        <label for="ts"><span>*</span> 252 Training Session 2010:</label>
+        <input type="date" name="date" required>
+    </div>
+	<div style="display:inline-block;vertical-align:top;">
+        <label><span>*</span> Job Function:</label>
+    </div>
+    <div style="display:inline-block">
+        <input type="radio" name="job" value="Campaign Management" required>
+        <label>Campaign Management</label><br>
+        <input type="radio" name="job" value="CRM Administraion">
+        <label>CRM Administraion</label><br>
+        <input type="radio" name="job" value="Email Deployment">
+        <label>Email Deployment</label><br>
+        <input type="radio" name="job" value="Partner">
+        <label>Partner</label><br>
+        <input type="radio" name="job" value="Employee">
+        <label>Employee</label>
+    </div>
+	<div>
+        <label for="dr">Dietary Requirements:</label>
+        <input type="text" name="dr">
+	</div>
+    <div>
+        <label for="dr" style="vertical-align: top;" >Expectations?:"</label>
+        <textarea name="expectations" cols="30" rows="10"></textarea><br>
+        <input type="submit" value="Submit" style="margin-left: 260px;">
+        <input type="reset" value="Reset" style="margin-left: 50px;">
+	</div>
+    </fieldset>
+    </form>
+</body>
+</html>
